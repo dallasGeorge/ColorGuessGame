@@ -84,7 +84,7 @@ function evaluateGuesses() {
   showColor.style.backgroundColor = targetColor;
   showColor.style.display = 'block';
   isColorVisible = true;
-
+  revealBtn.style.display = 'none';
   highlightTargetBox();
 }
 
