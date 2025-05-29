@@ -1,0 +1,167 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  font-family: sans-serif;
+}
+
+header {
+  text-align: center;
+  padding: 10px;
+  background: #eee;
+}
+
+#showColor {
+  width: 60px;
+  height: 60px;
+  margin: 10px auto;
+  border-radius: 50%;
+  border: 2px solid #444;
+  transition: width 0.3s ease, height 0.3s ease;
+}
+
+#colorBoard {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(30, 1fr);
+  grid-template-rows: repeat(16, 1fr); /* 15 rows + greyscale */
+  width: 100%;
+  height: 100%;
+}
+
+.cell {
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+
+.cell:hover {
+  outline: 2px solid white;
+}
+
+.guess {
+  border: 3px solid rgb(4, 5, 4) !important;
+}
+
+.targetBox {
+  outline: 3px solid rgb(0, 255, 8);
+  z-index: 2;
+}
+
+button {
+  padding: 8px 16px;
+  font-size: 1em;
+  cursor: pointer;
+  margin-top: 5px;
+  min-width: 120px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #ddd;
+}
+
+#message {
+  text-align: center;
+  font-size: 1em;
+  margin-top: 5px;
+  padding: 0 10px;
+}
+
+/* MOBILE RESPONSIVE */
+
+@media (max-width: 768px) {
+  #colorBoard {
+    grid-template-columns: repeat(20, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+  }
+
+  .cell {
+    border-width: 0.5px;
+  }
+
+  #showColor {
+    width: 50px;
+    height: 50px;
+  }
+
+  button {
+    padding: 10px 14px;
+    font-size: 1em;
+    min-width: 100px;
+    margin: 4px 5px;
+  }
+
+  header h2 {
+    font-size: 1.2em;
+    padding: 0 5px;
+  }
+
+  #message {
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 400px) {
+  #colorBoard {
+    grid-template-columns: repeat(15, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+  }
+
+  #showColor {
+    width: 40px;
+    height: 40px;
+  }
+
+  button {
+    padding: 8px 12px;
+    font-size: 0.9em;
+    min-width: 80px;
+  }
+
+  header h2 {
+    font-size: 1em;
+  }
+
+  #message {
+    font-size: 0.8em;
+  }
+}
+
+/* ROTATE TO LANDSCAPE ENFORCEMENT */
+
+#rotateMessage {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #222;
+  color: white;
+  font-size: 1.5em;
+  text-align: center;
+  padding-top: 40vh;
+  z-index: 9999;
+  user-select: none;
+  pointer-events: auto;
+}
+
+/* Hide game UI when in portrait on mobile */
+@media screen and (max-width: 768px) {
+  body.portrait #colorBoard,
+  body.portrait header,
+  body.portrait #showColor,
+  body.portrait button,
+  body.portrait #message {
+    display: none !important;
+  }
+  body.portrait #rotateMessage {
+    display: block !important;
+  }
+}
