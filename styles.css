@@ -22,6 +22,19 @@ header {
   border: 2px solid #444;
   transition: width 0.3s ease, height 0.3s ease;
 }
+#rulesBtn {
+  padding: 8px 16px;
+  font-size: 1em;
+  cursor: pointer;
+  margin-top: 5px;
+  min-width: 120px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+#rulesBtn:hover {
+  background-color: #ddd;
+}
 
 #colorBoard {
   flex: 1;

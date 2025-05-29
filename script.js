@@ -98,8 +98,17 @@ function highlightTargetBox() {
   }
 }
 
+const rulesBtn = document.getElementById('rulesBtn');
+
+rulesBtn.onclick = () => {
+  alert('Pretty simple... one sees the color and gives 1 or 2 word hints, and the other has 4 tries.');
+};
+
 function startGame() {
   createBoard();
+
+  // Hide rules button once game starts
+  rulesBtn.style.display = 'none';
 
   const validStartCells = cells.filter(cell => {
     const row = parseInt(cell.dataset.row);
@@ -124,9 +133,15 @@ function startGame() {
     isColorVisible = false;
     revealBtn.style.display = 'inline-block'; // Show reveal button
     startBtn.textContent = "Restart";
-    startBtn.onclick = startGame;
+    startBtn.onclick = () => {
+      startGame();
+      // Show rules button again on restart
+      rulesBtn.style.display = 'inline-block';
+    };
   };
 }
+
+
 
 function toggleAnswer() {
   if (isColorVisible) {
@@ -141,6 +156,9 @@ function toggleAnswer() {
 }
 
 revealBtn.onclick = toggleAnswer;
+
+
+
 
 //orientation handling
 
@@ -160,8 +178,10 @@ function updateOrientation() {
 window.addEventListener('resize', updateOrientation);
 window.addEventListener('orientationchange', updateOrientation);
 
+
 window.onload = () => {
   createBoard();
   startBtn.onclick = startGame;
+  rulesBtn.style.display = 'inline-block';
   updateOrientation();
 };
